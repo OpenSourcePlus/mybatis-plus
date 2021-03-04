@@ -1,5 +1,83 @@
 ﻿# CHANGELOG
 
+## [v3.4.2] 2021.01.15
+
+- fix: 移除 BlockAttackInnerInterceptor 内引用的 commons 的 utils
+- feat: PaginationInnerInterceptor 添加 optimizeJoin 属性控制是否在count时对sql的join进行优化
+- feat: 可通过Resources.setDefaultClassLoader设置默认类加载器.
+- feat: InterceptorIgnore 注解新增 others 属性
+- feat: IService 增加 kotlin 链式调用支持(ktQuery() 和 ktUpdate())
+- style: jsqlparser up to 4.0
+- style: 移除 com.baomidou.mybatisplus.extension.injector.methods.additional 包下的过时类
+- style: generator 模块另开仓库 [generator](https://github.com/baomidou/generator)
+
+## [v3.4.1] 2020.11.10
+
+- fix: 新多租户插件完善子查询,支持 比较符号,in,EXISTS,NOT EXISTS
+- feat: 公开 AbstractWrapper.getEntityClass
+- feat: 新增 FakeTenantLineInnerInterceptor 对 TenantSqlParser 进行过度
+- feat: 分页count识别 `left join (subSelect)` 优化
+- feat: 所有 count 从 count(1) 变更为 count(*)
+- style: mybatis up to 3.5.6
+
+## [v3.4.0] 2020.8.23
+- fix: @TableName.autoResultMap=true 情况下, 内置的 selectBody 将不会进行 as ,使用了的需要注意!!!
+- feat: 新增 mybatis-plus-boot-starter-test 模块
+- fix: MetaObjectHandler 重载错误(解决办法是参数位置对调),填充值在泛型上支持字段类型的子类
+- feat: mybatis up to 3.5.5, mybatis-spring up to 2.0.5
+- feat: jsqlparser up to 3.2
+- feat: 新增 MybatisParameterHandler, 废弃 MybatisDefaultParameterHandler
+- feat: 分页插件加入 GBase,ClickHouse,oscar,OceanBase 数据库连接自动识别的支持
+- feat: Wrapper 新增api not(boolean condition, Consumer consumer)
+- feat: 新增 MybatisPlusInterceptor 解决 多租户和分页 插件一级和二级缓存不正确问题
+- feat: 新分页插件优化 size<0 时继续拼接 orderBy
+- feat: 新增 IdentifierGenerator 一个实现类 ImadcnIdentifierGenerator
+- fix: chainWrapper#func 强转异常
+- fix(mybatis-plus-generator.main): 重构生成器数据库类型转换器，修复部分支条，提交选择器测试
+- fix: 修复复杂情况中动态表名替换产生的问题：正则由空白检测转为单词边界检测
+- refactor: 重构动态表名解析器，去除正则替换程序，改为按表名位置进行替换
+- refactor: 将表名解析重构为访问者模式，现在不会对原有 SQL 做改动
+
+
+## [v3.3.2] 2020.5.26
+- 分页参数提取,单元测试用例修复
+- 达梦数据库代码生成器表过滤支持
+- 微软数据库代码生成器表过滤支持
+- 修复代码生成器属性字段规则错误
+- SelectById 支持自定义方法名
+- 修复分页插件获取数据库类型问题
+- Json转换器空值处理
+- bugfix(mybatis-plus-generator):SQL类型返回错误问题
+- 调整未知方言异常,自动识别url转换小写匹配.
+- fix: 初始化 TableInfo 中遇到多个字段有 @TableId 注解时未能抛出异常的问题
+- SuperController有Class参数的set方法
+- 增加方法StrategyConfig.setSuperServiceImplClass(java.lang.Class<?>).
+- 代码生成器命名策略调整.
+- 扩展分页缓存key值计算.
+- 去除方法推测,直接访问属性字段.
+- 修正枚举处理器类型不匹配比较.
+- 修改表前缀匹配方式
+- 修改在Mybatis全局配置文件中设置分页插件参数不生效问题
+- 修复PR未指定解析器的时候引发空指针
+- 增加分页插件limit参数配置
+- 修复指定superEntityClass重复生成父类字段问题
+- 无主键的情况无需导入IdType与TableId包
+- 调整生成BaseResultMap格式
+- 支持lombok模式下选择是否进行链式set生成
+- 修复解析器for update错误
+- 过滤PG约束列(只留下主键约束)
+- 增加生成器禁用模板生成
+- fix(kotlin): 修复动态表名 BUG，最大努力替换表名
+- 修复PG约束生成重复属性字段问题
+- fix(kotlin): 将 LambdaUtils 中缓存的 key 改为 String
+- 代码生成器增加数据库关键字处理接口
+- fix github/issues/2454 支持注解可继承
+- 新增 AES 加密数据库用户名密码
+- 优化方法入参泛型，支持更多类型
+- 修复代码生成器开启移除is前缀生成实体缺少包导入
+- fixed github issues/2470
+
+
 ## [v3.3.1] 2020.1.17
 - 新增`TableName`注解属性`excludeProperty`支持排除字段
 - 新增ServiceImpl#entityClass属性，减少泛型提取
